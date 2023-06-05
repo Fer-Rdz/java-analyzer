@@ -15,24 +15,24 @@ parser code
 }
 :};
 
-terminal Linea, Comillas, T_dato, Int, Cadena, If, Else, Do, While, For,Declaracion,Tipo,then,
+terminal Linea, Comillas, T_dato, Int, Cadena, If, Else, Do, While, For,Declaracion,Tipo,Imprimir,string,
     Igual, Suma, Resta, Multiplicacion, Division, Op_logico, Op_relacional,
     Op_atribucion, Op_incremento, Op_booleano, Parentesis_a, Parentesis_c,
     Llave_a, Llave_c, Corchete_a, Corchete_c, Main, P_coma, Identificador,
     Numero, ERROR;
 
 non terminal INICIO, SENTENCIA, DECLARACION, DECLARACION_FOR, IF, IF_ELSE,
-    WHILE, DO_WHILE, FOR, SENTENCIA_BOOLEANA, SENTENCIA_FOR;
+    WHILE, DO_WHILE, FOR, SENTENCIA_BOOLEANA, SENTENCIA_FOR, IMP, CONCATENACION;
 
 start with INICIO;
 
-INICIO ::= 
+INICIO ::=
     SENTENCIA
 ;
-SENTENCIA ::= 
+SENTENCIA ::=
     SENTENCIA DECLARACION |
     DECLARACION |
-    SENTENCIA IF | 
+    SENTENCIA IF |
     IF |
     SENTENCIA IF_ELSE |
     IF_ELSE |
@@ -41,18 +41,54 @@ SENTENCIA ::=
     SENTENCIA DO_WHILE |
     DO_WHILE |
     SENTENCIA FOR |
-    FOR
+    FOR |
+    SENTENCIA IMP |
+    SENTENCIA CONCATENACION |
+    CONCATENACION  |
+    IMP
 ;
-DECLARACION ::= 
-    Declaracion Identificador Tipo T_dato P_coma | 
+
+CONCATENACION ::=
+    Suma Comillas Identificador Comillas |
+    Suma Comillas Numero Comillas |
+    Comillas Identificador Comillas Suma
+;
+
+IMP ::=
+    Imprimir Parentesis_a Comillas Identificador Comillas Parentesis_c P_coma |
+    Imprimir Parentesis_a Identificador Parentesis_c P_coma |
+    Imprimir Parentesis_a Identificador Suma Identificador Parentesis_c P_coma |
+    Imprimir Parentesis_a Identificador Suma Numero Parentesis_c P_coma |
+    Imprimir Parentesis_a Identificador Resta Identificador Parentesis_c P_coma |
+    Imprimir Parentesis_a Identificador Resta Numero Parentesis_c P_coma |
+    Imprimir Parentesis_a Comillas Identificador Comillas SENTENCIA CONCATENACION Parentesis_c P_coma
+;
+
+DECLARACION ::=
+    Declaracion Identificador Tipo T_dato P_coma |
     Declaracion Identificador Tipo T_dato Op_atribucion Numero P_coma |
     Declaracion Identificador Tipo T_dato Igual Numero P_coma |
-    Declaracion Identificador Tipo T_dato Op_incremento P_coma | 
-    Declaracion Op_incremento Identificador P_coma | 
-    Cadena Identificador Op_atribucion Comillas Comillas P_coma |
-    Cadena Identificador Igual Comillas Comillas P_coma |
-    Cadena Identificador Op_atribucion Comillas Identificador Comillas P_coma |
-    Cadena Identificador Igual Comillas Identificador Comillas P_coma
+    Declaracion Identificador Tipo T_dato Op_incremento P_coma |
+    Declaracion Identificador Tipo T_dato Op_atribucion Comillas Comillas P_coma |
+    Declaracion Identificador Tipo T_dato Igual Comillas Comillas P_coma |
+    Declaracion Identificador Tipo T_dato Op_atribucion Comillas Identificador Comillas P_coma |
+    Declaracion Identificador Tipo T_dato Igual Comillas Identificador Comillas P_coma |
+    Declaracion Identificador Tipo T_dato Igual Identificador Numero P_coma |
+    Declaracion Identificador Numero Tipo T_dato P_coma |
+    Declaracion Identificador Numero Tipo T_dato Op_atribucion Numero P_coma |
+    Declaracion Identificador Numero Tipo T_dato Igual Numero P_coma |
+    Declaracion Identificador Numero Tipo T_dato Op_incremento P_coma |
+    Declaracion Identificador Numero Tipo T_dato Op_atribucion Comillas Comillas P_coma |
+    Declaracion Identificador Numero Tipo T_dato Igual Comillas Comillas P_coma |
+    Declaracion Identificador Numero Tipo T_dato Op_atribucion Comillas Identificador Comillas P_coma |
+    Declaracion Identificador Numero Tipo T_dato Igual Comillas Identificador Comillas P_coma |
+    Declaracion Identificador Numero Tipo T_dato Igual Identificador Numero P_coma |
+    Declaracion Op_incremento Identificador P_coma |
+    Identificador Op_atribucion Comillas Comillas P_coma |
+    Identificador Igual Comillas Comillas P_coma |
+    Identificador Op_atribucion Comillas Identificador Comillas P_coma |
+    Identificador Igual Numero P_coma |
+    string Igual Comillas Identificador Comillas P_coma
 ;
 IF ::= If SENTENCIA_BOOLEANA Llave_a SENTENCIA Llave_c
 ;

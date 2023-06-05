@@ -105,6 +105,10 @@ espacio=[ ,\t,\r,\n]+
 
 ("::") {return new Symbol(sym.Tipo, yychar, yyline, yytext());}
 
+("string") {return new Symbol(sym.Cadena, yychar, yyline, yytext());}
+
+("write") {return new Symbol(sym.Imprimir, yychar, yyline, yytext());}
+
 /* Identificador */
 {L}({L}|{D})* {return new Symbol(sym.Identificador, yychar, yyline, yytext());}
 

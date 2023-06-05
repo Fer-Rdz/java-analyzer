@@ -6,6 +6,7 @@ import static analizador.Tokens.*;
 L=[a-zA-Z_]+
 D=[0-9]+
 espacio=[ ,\t,\r]+
+text = \".+\"
 %{
     public String lexeme;
 %}
@@ -24,10 +25,14 @@ espacio=[ ,\t,\r]+
 ( "\"" ) {lexeme=yytext(); return Comillas;}
 
 /* Tipos de datos */
-( byte | int | char | long | float | double ) {lexeme=yytext(); return T_dato;}
+/*( byte | int | char | long | float | double | string ) {lexeme=yytext(); return T_dato;}*/
 
 /* Tipo de dato String */
-( String ) {lexeme=yytext(); return Cadena;}
+( string | char) {lexeme=yytext(); return Cadena;}    
+
+( int | long) {lexeme=yytext(); return Entero;}
+
+( double | float ) {lexeme=yytext(); return Decimal;}
 
 /* Palabra reservada If */
 ( if ) {lexeme=yytext(); return If;}
@@ -98,11 +103,13 @@ espacio=[ ,\t,\r]+
 /* Punto y coma */
 ( ";" ) {lexeme=yytext(); return P_coma;}
 
-( "var" ) {lexeme=yytext(); return Var;}
+( "var" ) {lexeme=yytext(); return Declaracion;}
 
 ( "::" ) {lexeme=yytext(); return Tipo;}
 
+( "write" ) {lexeme=yytext(); return Imprimir;}
 
+( {text} ) {lexeme=yytext(); return Texto;}
 
 /* Identificador */
 {L}({L}|{D})* {lexeme=yytext(); return Identificador;}

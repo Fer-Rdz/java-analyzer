@@ -4,12 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/rodri/OneDrive/Documentos/analizador/src/analizador/LexerCup.flex</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/analizador/src/analizador/UI.java</file>
             <file>file:/C:/Users/rodri/OneDrive/Documentos/analizador/src/analizador/Sintax.cup</file>
             <file>file:/C:/Users/rodri/OneDrive/Documentos/analizador/src/analizador/Analizador.java</file>
             <file>file:/C:/Users/rodri/OneDrive/Documentos/analizador/src/analizador/Lexer.flex</file>
-            <file>file:/C:/Users/rodri/OneDrive/Documentos/analizador/src/analizador/LexerCup.java</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/analizador/src/test/prueba.txt</file>
+            <file>file:/C:/Users/rodri/OneDrive/Documentos/analizador/src/analizador/Interfaz.java</file>
             <file>file:/C:/Users/rodri/OneDrive/Documentos/analizador/src/analizador/Tokens.java</file>
-            <file>file:/C:/Users/rodri/OneDrive/Documentos/analizador/src/analizador/sym.java</file>
             <file>file:/C:/Users/rodri/OneDrive/Documentos/analizador/src/analizador/Principal.java</file>
         </group>
     </open-files>

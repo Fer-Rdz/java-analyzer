@@ -37,9 +37,12 @@ public enum Tokens {
     Corchete_c,
     Main,
     P_coma,
+    Imprimir,
     Identificador,
     Numero,
     Declaracion,
-    Var,
-    Tipo
+    Tipo,
+    Decimal,
+    Texto,
+    Entero
 }
